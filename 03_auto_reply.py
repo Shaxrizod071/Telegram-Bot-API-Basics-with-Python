@@ -1,5 +1,6 @@
 import requests
 from config import TOKEN, BASE_URL
+from pprint import pprint
 
 
 def reply_to_last_user():
@@ -9,4 +10,11 @@ def reply_to_last_user():
     - Extract chat_id
     - Send response message
     """
-    pass
+    url=BASE_URL+'/getUpdates'
+    r=requests.get(url)
+    data=r.json()
+    result=data['result']
+    message=result[-1]['message']
+    chat=message['chat']
+    pprint(chat)
+reply_to_last_user()
